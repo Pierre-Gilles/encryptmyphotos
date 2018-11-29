@@ -1,7 +1,6 @@
 {
-  "private": true,
-  "name": "encryptmyphoto",
-  "version": "0.0.0",
+  "name": "store-my-photo",
+  "version": "0.1.0",
   "license": "MIT",
   "scripts": {
     "start": "per-env",

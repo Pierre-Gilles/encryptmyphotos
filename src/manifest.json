@@ -1,7 +1,7 @@
 {
-  "name": "encryptmyphoto",
-  "short_name": "encryptmyphoto",
-  "start_url": "localhost:8080",
+  "name": "Store My Photo",
+  "short_name": "storemyphoto",
+  "start_url": "https://app.storemyphoto.com/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#fff",
