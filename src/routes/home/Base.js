@@ -6,10 +6,10 @@ const Home = ({ children, ...props }) => (
     <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
         <a class="navbar-brand brand-logo" href="../../index.html">
-          <h3 style="color:black; margin-top: 15px;">Encrypt 🔐</h3>
+          <h3 style="color:black; margin-top: 15px;">Store My Photo 🔐</h3>
         </a>
         <a class="navbar-brand brand-logo-mini" href="../../index.html">
-          <img src="../../images/logo-mini.svg" alt="logo" />
+          <h3 style="color:black; margin-top: 15px;">🔐</h3>
         </a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center">

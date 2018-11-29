@@ -7,7 +7,9 @@ let files = [];
 const Database = {
   getImageList: async () => {
     let filesString = await blockstack.getFile(DATABASE_FILENAME);
-    files = JSON.parse(filesString);
+    if (filesString) {
+      files = JSON.parse(filesString);
+    }
     return files;
   },
   loadImages: async (files) => {
@@ -16,6 +18,9 @@ const Database = {
       promises.push(blockstack.getFile(file.id));
     });
     return Promise.all(promises);
+  },
+  initAccount: () => {
+    return blockstack.putFile(DATABASE_FILENAME, JSON.stringify([]));
   },
   saveDatabase: () => {
     return blockstack.putFile(DATABASE_FILENAME, JSON.stringify(files));

@@ -82,6 +82,11 @@ class Home extends Component {
       .then(() => {
         console.log('finished');
         this.refreshImageList();
+        setTimeout(() => {
+          this.setState({
+            progressBarPercentage: null
+          });
+        }, 1500);
       });
 
     return false;
@@ -98,6 +103,7 @@ class Home extends Component {
   }
 
   refreshImageList = async () => {
+    //await Database.initAccount();
     let imageList = await Database.getImageList();
     let images = await Database.loadImages(imageList);
     this.setState({
