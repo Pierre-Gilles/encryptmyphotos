@@ -30,7 +30,7 @@ const Home = ({ children, ...props }) => (
         </ul>}
         <ul class="navbar-nav navbar-nav-right">
         <li class="nav-item">
-            <a href="#" class="nav-link" onClick={props.login}>
+            <a href="#" class="nav-link" onClick={props.logout}>
               <i class="mdi mdi-bookmark-plus-outline"></i>Logout</a>
           </li>
         </ul>

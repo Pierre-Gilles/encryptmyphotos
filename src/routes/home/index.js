@@ -92,8 +92,8 @@ class Home extends Component {
     return false;
   }
 
-  login = () => {
-    blockstack.redirectToSignIn();
+  logout = () => {
+    blockstack.signUserOut();
   };
 
   onDragOver = (e) => {
@@ -126,7 +126,7 @@ class Home extends Component {
 
   render({}, { images }) {
     return (
-      <Base onDrop={this.onDrop} onDragOver={this.onDragOver} login={this.login}>
+      <Base onDrop={this.onDrop} onDragOver={this.onDragOver} logout={this.logout}>
         {this.state.progressBarPercentage !== null && <ProgressBar percentage={this.state.progressBarPercentage} /> }  
         { this.state.loading && <Loading />}
         { !this.state.loading && <Gallery images={images} /> }
