@@ -2,8 +2,9 @@ import { Component } from 'preact';
 
 class LoginPage extends Component {
 
-  login = () => {
-    blockstack.redirectToSignIn();
+  componentDidMount = () => {
+    const redirectURI = `${window.location.origin}/`;
+    blockstack.redirectToSignIn(redirectURI);
   };
 
   render({}, { }) {
@@ -15,7 +16,7 @@ class LoginPage extends Component {
               <div class="auto-form-wrapper">
                 <form action="#">
                   <div class="form-group">
-                    <button class="btn btn-block btn-success" onClick={this.login}>Log in with Blockstack</button>
+                    <h3 style="margin-bottom: 25px">Login you to Blockstack...</h3>
                   </div>
                 </form>
               </div>
