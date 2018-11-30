@@ -13,7 +13,8 @@ class Home extends Component {
 
   state = {
     progressBarPercentage: null,
-    loading: true
+    loading: true,
+    showResetAccountConfirmation: false
   };
 
   uploadOneFile = (f) => {
@@ -119,7 +120,6 @@ class Home extends Component {
   }
 
   refreshImageList = async () => {
-    //await Database.initAccount();
     let imageList = await Database.getImageList();
     let images = await Database.loadImages(imageList);
     this.setState({
@@ -128,8 +128,21 @@ class Home extends Component {
     });
   }
 
-  componentDidMount = async () => {
+  resetAccountConfirmation = () => {
+    this.setState({
+      showResetAccountConfirmation: true
+    });
+  };
 
+  resetAccount = async () => {
+    await Database.initAccount();
+    this.setState({
+      showResetAccountConfirmation: false,
+      images: []
+    });
+  };
+
+  componentDidMount = async () => {
     if (blockstack.isUserSignedIn()) {
       console.log('logged in');
       await this.refreshImageList();
@@ -142,9 +155,12 @@ class Home extends Component {
     }
   }
 
-  render({}, { images, dragAndDropHover }) {
+  render({}, { images, dragAndDropHover, showResetAccountConfirmation }) {
     return (
-      <Base onDrop={this.onDrop} onDragOver={this.onDragOver} onDragLeave={this.onDragLeave}  dragAndDropHover={dragAndDropHover} logout={this.logout}>
+      <Base onDrop={this.onDrop} onDragOver={this.onDragOver} onDragLeave={this.onDragLeave}  dragAndDropHover={dragAndDropHover} logout={this.logout} resetAccountConfirmation={this.resetAccountConfirmation} 
+        showResetAccountConfirmation={showResetAccountConfirmation} 
+        resetAccount={this.resetAccount}
+        >
         {this.state.progressBarPercentage !== null && <ProgressBar percentage={this.state.progressBarPercentage} /> } 
         { this.state.loading && <Loading />}
         { !this.state.loading && <Gallery images={images} /> }

@@ -29,6 +29,14 @@ const Home = ({ children, ...props }) => (
           </li>
         </ul>}
         <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item">
+            { !props.showResetAccountConfirmation &&
+            <a href="#" class="nav-link" onClick={props.resetAccountConfirmation}>
+              <i class="mdi mdi-bookmark-plus-outline"></i>Reset account</a> }
+            { props.showResetAccountConfirmation &&
+            <a href="#" class="nav-link" onClick={props.resetAccount}>
+              <i class="mdi mdi-bookmark-plus-outline"></i>Confirm Pictures deletion?</a> }
+          </li>
         <li class="nav-item">
             <a href="#" class="nav-link" onClick={props.logout}>
               <i class="mdi mdi-bookmark-plus-outline"></i>Logout</a>
