@@ -5,6 +5,9 @@ import Database from '../../api/Database';
 import ProgressBar from './ProgressBar';
 import Loading from './Loading';
 import EmptyState from './EmptyState';
+import Promise from 'bluebird';
+import update from 'immutability-helper';
+import { route } from 'preact-router';
 
 class Home extends Component {
 
@@ -28,7 +31,7 @@ class Home extends Component {
         return (e) => {
           //console.log(e.target.result);
           Database.uploadImage(f, e.target.result)
-            .then(() => {
+            .then((imageContent) => {
               let newPercentage = this.state.progressBarPercentage + this.state.step;
               
               if (newPercentage > 100) {
@@ -39,7 +42,7 @@ class Home extends Component {
                 progressBarPercentage: newPercentage
               });
               
-              resolve();
+              resolve(imageContent);
             })
             .catch((err) => reject(err));
         };
@@ -71,19 +74,13 @@ class Home extends Component {
       });
     }, 900);
 
-    let promises = [];
     this.currentProgress = 0;
-    this.step = 1/files.length;
+    this.step = (100-15)/files.length;
 
-    for (let i = 0; i < files.length; i++) {
-      let f = files[i];
-      promises.push(this.uploadOneFile(f));
-    }
-
-    Promise.all(promises)
-      .then(() => {
+    Promise.mapSeries(files, (f) => this.uploadOneFile(f))
+      .then((images) => {
         console.log('finished');
-        this.refreshImageList();
+        this.addImagesToList(images);
         setTimeout(() => {
           this.setState({
             progressBarPercentage: null
@@ -95,7 +92,8 @@ class Home extends Component {
   }
 
   logout = () => {
-    blockstack.signUserOut();
+    const redirectUrl = '/logout';
+    blockstack.signUserOut(redirectUrl);
   };
 
   onDragOver = (e) => {
@@ -111,6 +109,13 @@ class Home extends Component {
     this.setState({
       dragAndDropHover: false
     });
+  }
+
+  addImagesToList = (images) => {
+    const newState = update(this.state, {
+      images: { $push: images }
+    });
+    this.setState(newState);
   }
 
   refreshImageList = async () => {
@@ -130,8 +135,10 @@ class Home extends Component {
       await this.refreshImageList();
     } else if (blockstack.isSignInPending()) {
       blockstack.handlePendingSignIn().then(function(userData) {
-        window.location = window.location.origin
+        window.location = window.location.origin;
       });
+    } else {
+      route('/login');
     }
   }
 

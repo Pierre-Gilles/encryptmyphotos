@@ -29,7 +29,8 @@ const Database = {
     file.id = uuid.v4();
     await blockstack.putFile(file.id, content);
     files.push(file);
-    return Database.saveDatabase();
+    await Database.saveDatabase();
+    return content;
   },
 };
 
