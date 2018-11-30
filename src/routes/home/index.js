@@ -61,7 +61,8 @@ class Home extends Component {
 
     this.setState({
       progressBarPercentage: 0,
-      step: 100/files.length
+      step: 100/files.length,
+      dragAndDropHover: false
     });
 
     setTimeout(() => {
