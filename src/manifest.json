@@ -1,14 +1,14 @@
 {
-  "name": "Store My Photo",
-  "short_name": "storemyphoto",
-  "start_url": "https://app.storemyphoto.com/",
+  "name": "Encrypt My Photos",
+  "short_name": "encryptmyphotos",
+  "start_url": "https://app.encryptmyphotos.com/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#fff",
   "theme_color": "#673ab8",
   "icons": [
     {
-      "src": "https://app.storemyphoto.com/assets/icons/android-icon-192x192.png",
+      "src": "https://app.encryptmyphotos.com/assets/icons/android-icon-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     }

@@ -22,7 +22,13 @@ class Home extends Component {
       
       // Only process image files.
       if (!f.type.match('image.*')) {
-        return resolve();
+        return resolve(null);
+      }
+
+      let fileSizeMegabytes = f.size / 1024 / 1024;
+
+      if (fileSizeMegabytes > 5) {
+        return resolve(null);
       }
 
       let reader = new FileReader();
@@ -113,6 +119,7 @@ class Home extends Component {
   }
 
   addImagesToList = (images) => {
+    images = images.filter((image) => (image !== null));
     const newState = update(this.state, {
       images: { $push: images }
     });
