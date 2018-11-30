@@ -6,6 +6,7 @@ import Header from './header';
 // Code-splitting is automated for routes
 import Home from '../routes/home';
 import Login from  '../routes/login';
+import Logout from '../routes/logout';
 
 export default class App extends Component {
 	
@@ -18,13 +19,14 @@ export default class App extends Component {
 	};
 
 	render() {
-		return (
-			<div id="app">
-				<Router onChange={this.handleRoute}>
-					<Home path="/" />
-					<Login path="/login" />
-				</Router>
-			</div>
-		);
-	}
+  return (
+      <div id="app">
+        <Router onChange={this.handleRoute}>
+          <Home path="/" />
+          <Login path="/login" />
+          <Logout path="/logout" />
+        </Router>
+      </div>
+    );
+  }
 }
