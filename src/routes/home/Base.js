@@ -43,7 +43,7 @@ const Home = ({ children, ...props }) => (
     <div class="container-fluid page-body-wrapper">
       
       
-      <div class="main-panel" style="width: 100%" ondrop={props.onDrop} ondragover={props.onDragOver}>
+      <div class={'main-panel ' + (props.dragAndDropHover === true ? 'drag-and-drop-hover' : '')} style="width: 100%" ondrop={props.onDrop} ondragover={props.onDragOver} ondragleave={props.onDragLeave}>
         <div class="content-wrapper">
           { children }
         </div>

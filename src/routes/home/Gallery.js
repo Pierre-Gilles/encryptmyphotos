@@ -3,7 +3,7 @@ import './style';
 
 
 const Gallery = ({ children, ...props }) => (
-  <div class="container-fluid">
+  <div className="container-fluid ">
 
     <div id="progress-bar" style="padding-bottom: 20px;">
     

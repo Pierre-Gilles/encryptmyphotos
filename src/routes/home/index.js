@@ -4,6 +4,7 @@ import Gallery from './Gallery';
 import Database from '../../api/Database';
 import ProgressBar from './ProgressBar';
 import Loading from './Loading';
+import EmptyState from './EmptyState';
 
 class Home extends Component {
 
@@ -97,9 +98,18 @@ class Home extends Component {
   };
 
   onDragOver = (e) => {
+    this.setState({
+      dragAndDropHover: true
+    });
     e.stopPropagation();
     e.preventDefault();
     e.dataTransfer.dropEffect = 'copy';
+  }
+
+  onDragLeave = (e) => {
+    this.setState({
+      dragAndDropHover: false
+    });
   }
 
   refreshImageList = async () => {
@@ -124,12 +134,13 @@ class Home extends Component {
     }
   }
 
-  render({}, { images }) {
+  render({}, { images, dragAndDropHover }) {
     return (
-      <Base onDrop={this.onDrop} onDragOver={this.onDragOver} logout={this.logout}>
-        {this.state.progressBarPercentage !== null && <ProgressBar percentage={this.state.progressBarPercentage} /> }  
+      <Base onDrop={this.onDrop} onDragOver={this.onDragOver} onDragLeave={this.onDragLeave}  dragAndDropHover={dragAndDropHover} logout={this.logout}>
+        {this.state.progressBarPercentage !== null && <ProgressBar percentage={this.state.progressBarPercentage} /> } 
         { this.state.loading && <Loading />}
         { !this.state.loading && <Gallery images={images} /> }
+        { !this.state.loading && images && images.length === 0 && <EmptyState />}
       </Base>
     );
   }
