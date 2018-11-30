@@ -1,4 +1,5 @@
-const uuid = require('uuid');
+import uuid from 'uuid';
+import Promise from 'bluebird';
 
 const DATABASE_FILENAME =  'photos.json';
 
@@ -6,9 +7,7 @@ let files = [];
 
 const Database = {
   getImageList: async () => {
-    let filesString = await blockstack.getFile(DATABASE_FILENAME, {
-      decrypt: true
-    });
+    let filesString = await blockstack.getFile(DATABASE_FILENAME);
     if (filesString) {
       files = JSON.parse(filesString);
     }
@@ -16,13 +15,13 @@ const Database = {
     return files;
   },
   loadImages: async (files) => {
-    let promises = [];
-    files.forEach((file) => {
-      promises.push(blockstack.getFile(file.id, {
-        decrypt: true
-      }));
-    });
-    return Promise.all(promises);
+    return Promise.map(files, (file) => {
+      return blockstack.getFile(file.id)
+        .catch(() => null);
+    }, {
+      concurrency: 3
+    })
+    .then((images) =>  images.filter((image) => (image !== null)));
   },
   initAccount: () => {
     return blockstack.putFile(DATABASE_FILENAME, JSON.stringify([], {
