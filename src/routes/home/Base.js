@@ -32,10 +32,10 @@ const Home = ({ children, ...props }) => (
           <li class="nav-item">
             { !props.showResetAccountConfirmation &&
             <a href="#" class="nav-link" onClick={props.resetAccountConfirmation}>
-              <i class="mdi mdi-bookmark-plus-outline"></i>Reset account</a> }
+              <i class="mdi mdi-bookmark-plus-outline"></i>Delete All Photos</a> }
             { props.showResetAccountConfirmation &&
             <a href="#" class="nav-link" onClick={props.resetAccount}>
-              <i class="mdi mdi-bookmark-plus-outline"></i>Confirm Pictures deletion?</a> }
+              <i class="mdi mdi-bookmark-plus-outline"></i>Confirm Deletion?</a> }
           </li>
         <li class="nav-item">
             <a href="#" class="nav-link" onClick={props.logout}>
