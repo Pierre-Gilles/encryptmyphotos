@@ -5,10 +5,10 @@ const Home = ({ children, ...props }) => (
 	<div class="container-scroller">
     <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center" style="width: 63px;">
-        <a class="navbar-brand brand-logo" href="../../index.html">
+        <a class="navbar-brand brand-logo" href="/">
           <h3 style="color:black; margin-top: 15px;">📷</h3>
         </a>
-        <a class="navbar-brand brand-logo-mini" href="../../index.html">
+        <a class="navbar-brand brand-logo-mini" href="/">
           <h3 style="color:black; margin-top: 15px;">📷</h3>
         </a>
       </div>
