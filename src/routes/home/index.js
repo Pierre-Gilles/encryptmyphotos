@@ -25,6 +25,10 @@ class Home extends Component {
         return resolve(null);
       }
 
+      if (!f.type.match('jpeg') && !f.type.match('jpg') && !f.type.match('png')) {
+        return resolve(null);
+      }
+
       let fileSizeMegabytes = f.size / 1024 / 1024;
 
       if (fileSizeMegabytes > 5) {
@@ -119,7 +123,16 @@ class Home extends Component {
   }
 
   addImagesToList = (images) => {
+    if (!images) {
+      return;
+    }
+
     images = images.filter((image) => (image !== null));
+
+    if (images.length === 0) {
+      return;
+    }
+
     const newState = update(this.state, {
       images: { $push: images }
     });
