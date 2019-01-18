@@ -28,7 +28,7 @@
     "preact-render-spy": "^1.2.1"
   },
   "dependencies": {
-    "blockstack": "^18.1.0",
+    "blockstack": "^18.2.1",
     "bluebird": "^3.5.3",
     "immutability-helper": "^2.8.1",
     "preact": "^8.2.6",
