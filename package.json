@@ -19,22 +19,22 @@
     "build/*"
   ],
   "devDependencies": {
-    "eslint": "^4.9.0",
-    "eslint-config-synacor": "^2.0.2",
+    "eslint": "^5.15.3",
+    "eslint-config-synacor": "^3.0.3",
     "identity-obj-proxy": "^3.0.0",
     "per-env": "^1.0.2",
-    "jest": "^21.2.1",
+    "jest": "^24.5.0",
     "preact-cli": "^2.1.0",
     "preact-render-spy": "^1.2.1"
   },
   "dependencies": {
-    "blockstack": "^18.2.1",
+    "blockstack": "^19.0.0",
     "bluebird": "^3.5.3",
-    "immutability-helper": "^2.8.1",
+    "immutability-helper": "^3.0.0",
     "preact": "^8.2.6",
     "preact-cli-plugin-fast-async": "^1.0.1",
     "preact-compat": "^3.17.0",
-    "preact-router": "^2.5.7",
+    "preact-router": "^3.0.0",
     "progressbar.js": "^1.0.1",
     "uuid": "^3.3.2"
   },
