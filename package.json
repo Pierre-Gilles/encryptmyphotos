@@ -10,7 +10,8 @@
     "serve": "preact build --template src/template.html && preact serve",
     "dev": "preact watch --template src/template.html",
     "lint": "eslint src",
-    "test": "jest"
+    "test": "jest",
+    "build-blockstack": "browserify src/assets/blockstack.js -o src/assets/bundle-blockstack.js"
   },
   "eslintConfig": {
     "extends": "eslint-config-synacor"
@@ -28,7 +29,7 @@
     "preact-render-spy": "^1.2.1"
   },
   "dependencies": {
-    "blockstack": "^18.2.1",
+    "blockstack": "^19.0.0",
     "bluebird": "^3.5.3",
     "immutability-helper": "^2.8.1",
     "preact": "^8.2.6",
