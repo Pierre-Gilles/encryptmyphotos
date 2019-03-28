@@ -1,7 +1,7 @@
 
 <h1 align="center">
   <br>
-  <a href="https://encryptmyphotos.com/"><img src="https://github.com/Pierre-Gilles/encryptmyphotos/raw/master/src/assets/images/logo.gif" alt="Encrypt My Photos" width="200"></a>
+  <a href="https://encryptmyphotos.com/"><img src="https://github.com/Pierre-Gilles/encryptmyphotos/raw/master/media/logo.gif" alt="Encrypt My Photos" width="200"></a>
   <br>
   Encrypt My Photos
   <br>
@@ -22,7 +22,7 @@
   <a href="#license">License</a>
 </p>
 
-![Demo](https://github.com/Pierre-Gilles/encryptmyphotos/raw/master/src/assets/images/demo.jpeg)
+![Demo](https://github.com/Pierre-Gilles/encryptmyphotos/raw/master/media/demo.jpeg)
 
 ## Key Features
 
