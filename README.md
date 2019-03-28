@@ -1,5 +1,7 @@
 # encryptmyphoto
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Pierre-Gilles/encryptmyphotos.svg)](https://greenkeeper.io/)
+
 ## CLI Commands
 
 ``` bash
