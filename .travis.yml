@@ -2,6 +2,9 @@ language: node_js
 node_js:
   - "10"
 
+install:
+  - npm install -g browserify
+  - npm install
 script:
   - npm test
   - npm run build-blockstack
