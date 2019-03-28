@@ -1,8 +1,6 @@
 import { h, Component } from 'preact';
 import { Router } from 'preact-router';
 
-import Header from './header';
-
 // Code-splitting is automated for routes
 import Home from '../routes/home';
 import Login from  '../routes/login';
@@ -15,18 +13,18 @@ export default class App extends Component {
 	 *	@param {string} event.url	The newly routed URL
 	 */
 	handleRoute = e => {
-		this.currentUrl = e.url;
+	  this.currentUrl = e.url;
 	};
 
 	render() {
-  return (
-      <div id="app">
-        <Router onChange={this.handleRoute}>
-          <Home path="/" />
-          <Login path="/login" />
-          <Logout path="/logout" />
-        </Router>
-      </div>
-    );
-  }
+	  return (
+	    <div id="app">
+	      <Router onChange={this.handleRoute}>
+	        <Home path="/" />
+	        <Login path="/login" />
+	        <Logout path="/logout" />
+	      </Router>
+	    </div>
+	  );
+	}
 }
