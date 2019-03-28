@@ -11,6 +11,8 @@
 
 <p align="center">
   <img alt="GitHub" src="https://img.shields.io/github/license/Pierre-Gilles/encryptmyphotos.svg">
+  <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/encryptmyphotos.svg?style=social">
+  <img alt="Travis (.org)" src="https://img.shields.io/travis/Pierre-Gilles/encryptmyphotos.svg">
 </p>
 
 <p align="center">
