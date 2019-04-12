@@ -1,6 +1,5 @@
 import './style';
-
-
+import Folder from './Folder';
 
 const Gallery = ({ children, ...props }) => {
 
@@ -43,28 +42,36 @@ const Gallery = ({ children, ...props }) => {
 
         <div class="d-flex flex-column">
           {imageBar1 && imageBar1.map((image, index) => {
-
+            if (image && image.isFolder === true) {
+              return (<Folder folder={image} />);
+            }
             return (<img src={image} class="img-fluid" style="width: 300px" />);
           })}
         </div>
 
         <div class="d-flex flex-column">
           {imageBar2 && imageBar2.map((image, index) => {
-
+            if (image && image.isFolder === true) {
+              return (<Folder folder={image} />);
+            }
             return (<img src={image} class="img-fluid" style="width: 300px" />);
           })}
         </div>
 
         <div class="d-flex flex-column">
           {imageBar3 && imageBar3.map((image, index) => {
-
+            if (image && image.isFolder === true) {
+              return (<Folder folder={image} />);
+            }
             return (<img src={image} class="img-fluid" style="width: 300px" />);
           })}
         </div>
 
         <div class="d-flex flex-column">
           {imageBar4 && imageBar4.map((image, index) => {
-
+            if (image && image.isFolder === true) {
+              return (<Folder folder={image} />);
+            }
             return (<img src={image} class="img-fluid" style="width: 300px" />);
           })}
 

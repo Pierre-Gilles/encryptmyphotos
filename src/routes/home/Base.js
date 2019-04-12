@@ -30,16 +30,20 @@ const Home = ({ children, ...props }) => (
         </ul>}
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item">
+            <a href="#" class="nav-link" onClick={props.openNewFolderModal}>
+              <i class="mdi mdi-bookmark-plus-outline"></i>New folder</a>
+          </li>
+           <li class="nav-item">
             { !props.showResetAccountConfirmation &&
             <a href="#" class="nav-link" onClick={props.resetAccountConfirmation}>
-              <i class="mdi mdi-bookmark-plus-outline"></i>Delete All Photos</a> }
+              <i class="mdi mdi-bookmark-plus-outline"></i>Settings</a> }
             { props.showResetAccountConfirmation &&
             <a href="#" class="nav-link" onClick={props.resetAccount}>
               <i class="mdi mdi-bookmark-plus-outline"></i>Confirm Deletion?</a> }
-          </li>
+            </li>
         <li class="nav-item">
             <a href="#" class="nav-link" onClick={props.logout}>
-              <i class="mdi mdi-bookmark-plus-outline"></i>Logout</a>
+              <i class="fa fa-bell"></i>Logout</a>
           </li>
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">

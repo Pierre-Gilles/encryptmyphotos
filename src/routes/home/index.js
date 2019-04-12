@@ -1,4 +1,5 @@
 import { Component } from 'preact';
+import uuid from 'uuid';
 import Base from './Base';
 import Gallery from './Gallery';
 import Database from '../../api/Database';
@@ -8,13 +9,22 @@ import EmptyState from './EmptyState';
 import Promise from 'bluebird';
 import update from 'immutability-helper';
 import { route } from 'preact-router';
+import Modal from './Modal';
+
+const base64 = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABALCwsMCxAMDBAXDw0PFxoUEBAUGh4XFxcXFx4dFxoZGRoXHR0jJCYkIx0vLzIyLy9AQEBAQEBAQEBAQEBAQED/2wBDAREPDxETERUSEhUUERMRFBkUFRUUGSUZGRsZGSUvIh0dHR0iLyotJiYmLSo0NC8vNDRAQD5AQEBAQEBAQEBAQED/wAARCAAFAAUDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAP/xAAeEAABBAEFAAAAAAAAAAAAAAASAAEDEQITFSExQf/EABUBAQEAAAAAAAAAAAAAAAAAAAME/8QAFxEAAwEAAAAAAAAAAAAAAAAAADGSk//aAAwDAQACEQMRAD8AjjvOpI7PMdRk1YkQSDzd134iIgpluaP/2Q==';
+const folder = { isFolder: true, title: 'Holidays Brazil', id: 'c6135d08-eb23-411b-b69c-3931df555af3' };
+const folders = ['Holidays Brazil', 'Family Trip Lake taho', 'Cooking Class', 'Sunset in Bali'];
+
+const aListOfImages = folders.map((title) => ({ isFolder: true, title, id: 'ii' }));
 
 class Home extends Component {
 
   state = {
     progressBarPercentage: null,
-    loading: true,
-    showResetAccountConfirmation: false
+    loading: false,
+    images: aListOfImages,
+    showResetAccountConfirmation: false,
+    displayModal: false
   };
 
   uploadOneFile = (f) => {
@@ -162,7 +172,44 @@ class Home extends Component {
     });
   };
 
+  createFolder = async () => {
+    const newFolder = {
+      isFolder: true,
+      title: this.state.newFolderName,
+      id: uuid.v4()
+    };
+    const newState = update(this.state, {
+      images: { $push: [newFolder] },
+      newFolderName: { $set: '' },
+      displayModal: { $set: false }
+    });
+    this.setState(newState);
+  }
+
+  openNewFolderModal = async () => {
+    this.setState({
+      displayModal: true
+    });
+  }
+
+  closeNewFolderModal = async () => {
+    this.setState({
+      displayModal: false
+    });
+  }
+
+  updateNewFolderName = async (e) => {
+    this.setState({
+      newFolderName: e.target.value
+    });
+  }
+
+  onKeyPressModal = async (e) => {
+    
+  }
+
   componentDidMount = async () => {
+  
     if (blockstack.isUserSignedIn()) {
       console.log('logged in');
       await this.refreshImageList();
@@ -171,13 +218,13 @@ class Home extends Component {
         window.location = window.location.origin;
       });
     } else {
-      route('/login');
+      // route('/login');
     }
   }
 
-  render({}, { images, dragAndDropHover, showResetAccountConfirmation }) {
+  render({}, { images, dragAndDropHover, showResetAccountConfirmation, displayModal, newFolderName }) {
     return (
-      <Base onDrop={this.onDrop} onDragOver={this.onDragOver} onDragLeave={this.onDragLeave}  dragAndDropHover={dragAndDropHover} logout={this.logout} resetAccountConfirmation={this.resetAccountConfirmation} 
+      <Base onDrop={this.onDrop} openNewFolderModal={this.openNewFolderModal} onDragOver={this.onDragOver} onDragLeave={this.onDragLeave}  dragAndDropHover={dragAndDropHover} logout={this.logout} resetAccountConfirmation={this.resetAccountConfirmation} 
         showResetAccountConfirmation={showResetAccountConfirmation} 
         resetAccount={this.resetAccount}
         >
@@ -185,6 +232,7 @@ class Home extends Component {
         { this.state.loading && <Loading />}
         { !this.state.loading && <Gallery images={images} /> }
         { !this.state.loading && images && images.length === 0 && <EmptyState />}
+        { displayModal && <Modal updateNewFolderName={this.updateNewFolderName} onKeyPressModal={this.onKeyPressModal} newFolderName={newFolderName} createFolder={this.createFolder} closeNewFolderModal={this.closeNewFolderModal} /> }
       </Base>
     );
   }
